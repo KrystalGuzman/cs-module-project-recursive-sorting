@@ -27,5 +27,34 @@ def binary_search(arr, target, start, end):
 # You can implement this function either recursively 
 # or iteratively
 def agnostic_binary_search(arr, target):
-    # Your code here
-    pass
+    start = 0
+    end = len(arr)-1
+    if arr[start] < arr[end]:
+        isAscending = True
+    else:
+        isAscending = False
+    while (start <= end):
+      # calculate the middle of the current range
+        mid = start + (end - start) // 2
+
+        if (target == arr[mid]):
+            return mid
+        # ascending order
+        if (isAscending): 
+            # target can be in the first half
+            if (target < arr[mid]):
+              end = mid - 1 
+            # target can be in the second half  
+            else: # key > arr[mid]
+              start = mid + 1 
+        # descending order      
+        else:         
+            # target can be in the first half
+            if (target > arr[mid]):
+              end = mid - 1 
+            # target can be in the second half
+            else: # key < arr[mid]
+              start = mid + 1 
+    return -1 # element not found
+
+# print(agnostic_binary_search([1,3,4,6,8],3))
